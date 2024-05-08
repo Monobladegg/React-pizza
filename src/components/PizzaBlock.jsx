@@ -10,7 +10,7 @@ export default function PizzaBlock({ title, price, imageUrl, types, sizes }) {
     setPizzaCount((prev) => prev + 1);
   };
 
-  const typeNames = ["тонкое", "традиционное"];
+  const typeNames = ["Тонкое", "Традиционное"];
 
   return (
     <div className="pizza-block">
