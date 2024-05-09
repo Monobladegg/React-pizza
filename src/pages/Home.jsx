@@ -19,6 +19,7 @@ export default function Home() {
         setItems(response.data);
         setIsLoading(false);
       });
+      scrollTo(0, 0);
   }, []);
 
   return (
