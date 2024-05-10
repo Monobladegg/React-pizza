@@ -9,15 +9,18 @@ import NotFound from "./pages/NotFoundPage";
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
-  // https://663ba699fee6744a6ea27281.mockapi.io/items
+
+  const [searchValue, setSearchValue] = useState("");
+
+
 
   return (
     <>
       <div className="wrapper">
-        <Header />
+        <Header searchValue={searchValue} setSearchValue={setSearchValue} />
         <div className="content">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home searchValue={searchValue} />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
