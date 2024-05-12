@@ -1,4 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, increment, test } from "./redux/slices/filterSlice";
 
 import "./scss/app.scss";
 
@@ -8,13 +10,39 @@ import Cart from "./pages/Cart.jsx";
 import NotFound from "./pages/NotFoundPage";
 import { Routes, Route } from "react-router-dom";
 
-export const AppContext = createContext('');
+export const AppContext = createContext("");
+
+console.log(test())
 
 export default function App() {
   const [searchValue, setSearchValue] = useState("");
+  const count = useSelector((state) => state.counter.count);
+  const dispatch = useDispatch();
+  console.log(dispatch)
+
   return (
-    <AppContext.Provider value={{ searchValue, setSearchValue}}>
-      <div className="wrapper">
+    <div className="wrapper">
+      <div>
+        <div>
+          <button
+            aria-label="Increment value"
+            onClick={() => dispatch(increment())}
+          >
+            Increment
+          </button>
+          <span>{count}</span>
+          <button
+            aria-label="Decrement value"
+            onClick={() => dispatch(decrement())}
+          >
+            Decrement
+          </button>
+          <button onClick={() => test()}>
+            test
+          </button>
+        </div>
+      </div>
+      <AppContext.Provider value={{ searchValue, setSearchValue }}>
         <Header />
         <div className="content">
           <Routes>
@@ -23,7 +51,7 @@ export default function App() {
             <Route path="/cart" element={<Cart />} />
           </Routes>
         </div>
-      </div>
-    </AppContext.Provider>
+      </AppContext.Provider>
+    </div>
   );
 }
