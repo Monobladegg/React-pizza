@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setCategoryId } from "../redux/slices/filterSlice";
+import { setCurrentPage, setCategoryId, setSort } from "../redux/slices/filterSlice";
 import Categories from "../components/Categories.jsx";
 import Sort from "../components/Sort.jsx";
 import PizzaBlock from "../components/PizzaBlock/";
@@ -12,11 +12,15 @@ import Pagination from "src/components/Pagination/index.jsx";
 
 export default function Home({ searchValue }) {
   const dispatch = useDispatch();
-  const categoryId = useSelector((state) => state.filter.categoryId);
+  const { categoryId, sort, pageCount } = useSelector((state) => state.filter.categoryId);
   const sortType = useSelector((state) => state.filter.sort.sortProperty);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
   };
 
   const [items, setItems] = useState([]);
@@ -59,7 +63,7 @@ export default function Home({ searchValue }) {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">{isLoading ? skeletons : pizzas}</div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 }
