@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
 import "./scss/app.scss";
 
