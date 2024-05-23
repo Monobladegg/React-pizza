@@ -1,6 +1,5 @@
 .root {
   position: relative;
-  left: -120px;
 }
 
 .input {
@@ -36,5 +35,11 @@
 
   &:hover {
     opacity: 0.8;
+  }
+}
+
+@media (max-width: 576px) {
+  .root {
+    margin-bottom: 20px;
   }
 }

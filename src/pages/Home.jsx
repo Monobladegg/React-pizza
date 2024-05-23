@@ -31,10 +31,6 @@ export default function Home({ searchValue }) {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [categoryId, searchValue]);
-
   const onChangePage = (number) => {
     dispatch(setCurrentPage(number));
   };
@@ -67,6 +63,7 @@ export default function Home({ searchValue }) {
       (_, index) => <Skeleton key={index} />
     );
 
+    
 
   useEffect(() => {
     if (isMounted.current) {
